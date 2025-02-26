@@ -1,0 +1,52 @@
+---
+title: "HW1"
+format: pdf
+author: Carrie
+---
+
+```{r}
+library(Hmisc)
+library(vtable)
+library(ggplot2)
+```
+
+```{r}
+df = read.csv("titanic.csv")
+```
+
+#####  The Titanic dataset contains the details of 891 passengers on board with 12 variables, which are as follows 
+| 1.PassengerId : 1 - 891.
+| 2.Survived : "0" respresens not survived,"1" represents survived.   
+| 3.Pclass :  1 - 3  
+| 4.Name : It's characters.
+| 5.Sex : "female"、"male"
+| 6.Age : 0.42 - 80
+| 7.SibSp : 0 - 8
+| 8.Parch : 0 - 6
+| 9.Ticket :It's characters.
+| 10.Fare : 0 - 512.33
+| 11.Cabin :It's characters.
+| 12.Embarked : "S","C","Q"
+
+##### From the table ,we can know that:
+
+* There are 177 missing in variable "Age" and lots of missing value in variable "Cabin".
+* There are some odd value, such as A/5 21171,PC 17599 that needs to be well-defined in the future.
+```{r}
+describe(df)
+```
+
+```{r}
+st(df)
+```
+
+##### From the histgram ,we can know that most poeple's age is between 20-40. 
+
+```{r}
+ggplot(df,aes(x = Age)) + geom_histogram()
+```
+
+##### And from the barchart, we can know that survuved people is less than the not-survuved ones.
+```{r}
+ggplot(data = df) + geom_bar(mapping = aes(x = Survived))
+```
